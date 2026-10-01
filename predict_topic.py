@@ -15,7 +15,7 @@ def encode_text(text: str, word_index: dict) -> np.ndarray:
     indices = []
     for word in words:
         if word in word_index:
-            idx = word_index[word] + 3  
+            idx = word_index[word]
             if idx < NUM_WORDS:
                 indices.append(idx)
     

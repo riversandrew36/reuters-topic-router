@@ -102,7 +102,7 @@ def get_top_salient_features(
         
         top_features = []
         for idx in top_indices:
-            word = reverse_word_index.get(idx - 3, f"[{idx}]") if reverse_word_index else f"[{idx}]"
+            word = reverse_word_index.get(idx, f"[{idx}]") if reverse_word_index else f"[{idx}]"
             top_features.append((idx, sample_saliency[idx], word))
         
         results.append(top_features)
@@ -133,7 +133,7 @@ def highlight_salient_words(
     # Get saliency for words in sequence
     word_saliency = []
     for idx in sequence:
-        word = reverse_word_index.get(idx - 3, "?")
+        word = reverse_word_index.get(idx, "?")
         sal = saliency[idx] if idx < len(saliency) else 0
         word_saliency.append((word, sal))
     

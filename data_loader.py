@@ -176,9 +176,9 @@ def decode_newswire(sequence, word_index):
         Decoded string
     """
     reverse_word_index = {v: k for k, v in word_index.items()}
-    # Indices are offset by 3 (0=padding, 1=start, 2=unknown)
+    # Raw reuters.npz indices match word_index directly (Keras only adds the +3 offset in its own loader)
     decoded = " ".join(
-        reverse_word_index.get(i - 3, "?") for i in sequence
+        reverse_word_index.get(i, "?") for i in sequence
     )
     return decoded
 

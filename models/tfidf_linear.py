@@ -176,8 +176,8 @@ def prepare_texts_from_sequences(sequences, word_index):
     
     texts = []
     for seq in sequences:
-        # Indices are offset by 3 (0=padding, 1=start, 2=unknown)
-        words = [reverse_word_index.get(i - 3, "") for i in seq]
+        # Raw reuters.npz indices match word_index directly (Keras only adds the +3 offset in its own loader)
+        words = [reverse_word_index.get(i, "") for i in seq]
         texts.append(" ".join(w for w in words if w))
     
     return texts
